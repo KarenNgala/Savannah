@@ -5,3 +5,4 @@ media/*
 
 virtual/
 .env
+.pytest_cache

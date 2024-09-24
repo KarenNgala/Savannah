@@ -15,8 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from mozilla_django_oidc.views import OIDCAuthenticationCallbackView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('application.urls')),
+    path('oidc/', include('mozilla_django_oidc.urls')),
+    path('oidc/callback/', OIDCAuthenticationCallbackView.as_view(), name='oidc_callback'),
+
 ]
