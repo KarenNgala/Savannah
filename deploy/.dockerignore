@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.log
+media/
+db.sqlite3
+
+venv/
+.env
+tests/
+.coverage
+.coverage.*
+
+*.cfg
+*.ini
+local_settings.py
+.git
