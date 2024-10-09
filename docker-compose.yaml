@@ -11,7 +11,11 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
 
   api:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENVIRONMENT: ${MODE}
     env_file: .env
     volumes:
       - .:/code

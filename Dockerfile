@@ -1,5 +1,8 @@
 FROM python:3.11-slim
 
+ARG ENVIRONMENT
+ENV ENVIRONMENT=${ENVIRONMENT}
+
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /code
@@ -10,8 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /code/
 
-RUN python manage.py collectstatic --noinput
+RUN if [ "$ENVIRONMENT" = "prod" ]; then python manage.py collectstatic --noinput; fi
 
 EXPOSE 8000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "project.wsgi:application"]
+CMD if [ "$ENVIRONMENT" = "prod" ]; then gunicorn --bind 0.0.0.0:8000 savannah.wsgi:application; else python manage.py runserver 0.0.0.0:8000; fi
