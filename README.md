@@ -38,5 +38,8 @@ You can explore the API documentation at:
     ``` bash
     pytest --cov=application tests/  
 9. Deployment
-
-Deployment instructions for Azure, including CI/CD setup, are in the deploy/ directory.
+#### Running the Application with Docker:
+You can run this project using Docker by pulling the image from GHCR:
+```bash
+docker pull ghcr.io/karenngala/savannah:latest
+```
